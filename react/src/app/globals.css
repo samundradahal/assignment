@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hello{
+  background-color: blue;
+  width: 100px;
+}
+
+.world{
+  background-color: red;
+  width: 100px;
+}
+
+.reg{
+  background-color: rgb(0, 13, 255);
+  width: 400px;
+}
