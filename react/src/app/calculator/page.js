@@ -48,7 +48,8 @@ import {Button} from "@nextui-org/react";
         }
         else{
             if(symbols.some((words)=> num.includes(words))){
-                setNum(num) 
+              const output = num.slice(0,-1)
+              setNum(output+symbol)
             }
             else{
                 setNum(num+symbol) 
