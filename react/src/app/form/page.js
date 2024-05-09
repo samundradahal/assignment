@@ -25,7 +25,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/[^\w]/, 'Password requires a symbol'),
    confirm: Yup
     .string()
-    .oneOf([Yup.ref('password'), null], 'Must match "password" field value'),
+    .oneOf([Yup.ref('password'), null], 'Must match upper password'),
  });
 
 const SignupForm = () => {
@@ -45,6 +45,7 @@ const SignupForm = () => {
       <div className='text'>Signup</div>
       <form onSubmit={formik.handleSubmit}>
       <Input
+      isClearable
       type="text"
       label="First Name"
       name="firstName"
@@ -52,10 +53,14 @@ const SignupForm = () => {
       onChange={formik.handleChange}
       value={formik.values.firstName}
       className="max-w-xs w-80 mx-8"
+      onClear={()=>{
+        formik.setFieldValue("firstName","")
+      }}
     />
     <div className='error mx-8'>{formik.errors.firstName}</div>
       
       <Input
+      isClearable
       id="lastName"
       name="lastName"
       type="text"
@@ -64,12 +69,15 @@ const SignupForm = () => {
       onChange={formik.handleChange}
       value={formik.values.lastName}
       className="max-w-xs w-80 mx-8"
+      onClear={()=>{
+        formik.setFieldValue("firstName","")
+      }}
     />
     <div className='error mx-8'>{formik.errors.lastName}</div>
 
       <Input
       isRequired
-      type="email"
+      type="text"
       label="Email"
       name="email"
       defaultValue=""
@@ -81,6 +89,7 @@ const SignupForm = () => {
 
     <Input
       isRequired
+      isClearable
       type="password"
       label="Password"
       name="password"
@@ -88,10 +97,14 @@ const SignupForm = () => {
       onChange={formik.handleChange}
       value={formik.values.password}
       className="max-w-xs w-80 mx-8"
+      onClear={()=>{
+        formik.setFieldValue("firstName","")
+      }}
     />
     <div className='error mx-8'>{formik.errors.password}</div>
 
     <Input
+    isClearable
       isRequired
       type="password"
       label="Confirm Password"
@@ -100,6 +113,9 @@ const SignupForm = () => {
       onChange={formik.handleChange}
       value={formik.values.confirm}
       className="max-w-xs w-80 mx-8"
+      onClear={()=>{
+        formik.setFieldValue("firstName","")
+      }}
     />
     <div className='error mx-8'>{formik.errors.confirm}</div>
     <div className='signup font-bold'>Already have an account?<a href='/login' className='text-blue-600'>Login</a></div>
